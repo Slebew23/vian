@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine Surprise</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(to right, #1E90FF, #87CEFA);
+            text-align: center;
+            font-family: 'Poppins', sans-serif;
+            color: white;
+            overflow: hidden;
+            padding: 20px;
+        }
+        h1 {
+            margin-top: 30px;
+            font-size: 3em;
+            animation: fadeIn 2s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .gift-box {
+            position: relative;
+            width: 250px;
+            margin: 50px auto;
+            cursor: pointer;
+        }
+        .gift-box img {
+            width: 100%;
+            transition: transform 0.5s ease-in-out;
+        }
+        .message-container {
+            position: absolute;
+            width: 80%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background: rgba(255, 255, 255, 0.9);
+            color: #00008B; /* Warna diubah menjadi biru tua */
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.5s ease-in-out;
+            font-size: 1.8em;
+            font-weight: bold;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+        }
+        .heart {
+            position: absolute;
+            color: red;
+            font-size: 30px;
+            animation: fall linear infinite;
+        }
+        @keyframes fall {
+            from { transform: translateY(-100px); opacity: 1; }
+            to { transform: translateY(100vh); opacity: 0; }
+        }
+        .footer {
+            margin-top: 50px;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Hai shel, webnya bagus nggak??</h1>
+    <p>Klik kotak hadiah di bawah untuk membuka kejutan!</p>
+    
+    <div class="gift-box" onclick="openGift()">
+        <img id="gift-image" src="Untitled design (4).png" alt="Kotak Hadiah Tertutup">
+    </div>
+    
+    <div class="message-container" id="message">
+        ✉ Message ✉<br>
+        gw pengen cepet pulang jir
+    </div>
+    
+    <p class="footer">gw ga pake template jir, maap juga itu kotak hadiahnya aneh</p>
+    
+    <script>
+        function openGift() {
+            document.getElementById('gift-image').src = "Untitled design (3).png";
+            document.getElementById('gift-image').style.transform = 'scale(1.1)';
+            setTimeout(() => {
+                document.getElementById('message').style.transform = 'translate(-50%, -50%) scale(1)';
+                startHeartRain();
+            }, 500);
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '😎';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 3 + 2 + 's';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+        }
+
+        function startHeartRain() {
+            setInterval(createHeart, 150);
+        }
+    </script>
+</body>
+</html>
